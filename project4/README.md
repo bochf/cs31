@@ -32,7 +32,7 @@ To make your life easier, whenever this specification talks about strings being 
 ## Your task
 Here are the functions you must implement:         
 ```c++ 
-int locateMaximum( const string array[], int n);
+int locateMaximum(const string array[], int n);
 ```
 Return the index of the largest item found in the array or -1 if n <= 0.  For example, for the array ```folks[8]``` shown above, ```locateMaximum(folks, 8)```  should return the value 4, corresponding to the index of "tyrion". If there are multiple duplicate maximum values, please return the smallest index that has this maximum value. The maximum value is determined by its dictionary-sorted order which is what < and > use in C++ to determine true and false.
 ```c++
