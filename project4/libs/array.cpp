@@ -131,6 +131,11 @@ bool hasDuplicates(const string array[], int n) {
 }
 
 string majorityElement(const string array[], int n) {
+  if (n <= 0)
+  {
+    return "";
+  }
+
   // find a majority candidate
   int major_idx = 0; // majority candidate index
   int count = 1;     // times the candicate appears

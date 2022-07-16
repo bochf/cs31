@@ -17,7 +17,7 @@ TEST(majorityElement, TestValid) {
 TEST(majorityElement, TestNegative) {
   string array[] = {"AA", "BB", "BB", "BB", "cc", "dd", "ee"};
 
-  EXPECT_EQ("", majorityElement(array, -1));
+  EXPECT_EQ("", majorityElement(array, -10));
   EXPECT_EQ("", majorityElement(array, 0));
   EXPECT_EQ("", majorityElement(array, 2));
 }

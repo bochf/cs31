@@ -18,6 +18,6 @@ TEST(countFloatingPointValues, TestValid) {
 TEST(countFloatingPointValues, TestNegative) {
   string array[] = {"55", "4A", "+35", "-55.", "15.0", "A12A", "15.0"};
 
-  EXPECT_EQ(-1, countFloatingPointValues(array, -1));
+  EXPECT_EQ(-1, countFloatingPointValues(array, -10));
   EXPECT_EQ(-1, countFloatingPointValues(array, 0));
 }

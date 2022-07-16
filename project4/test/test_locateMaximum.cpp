@@ -18,6 +18,6 @@ TEST(locateMaximum, TestValid) {
 TEST(locateMaximum, TestNegative) {
   string array[] = {"AA", "BB", "BB", "BB", "cc", "dd", "ee"};
 
-  EXPECT_EQ(-1, locateMaximum(array, -1));
+  EXPECT_EQ(-1, locateMaximum(array, -10));
   EXPECT_EQ(-1, locateMaximum(array, 0));
 }

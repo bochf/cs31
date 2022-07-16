@@ -17,7 +17,7 @@ TEST(hasDuplicates, TestValid) {
 TEST(hasDuplicates, TestNegative) {
   string array[] = {"55", "4A", "+35", "-55.", "15.0", "A12A", "15.0"};
 
-  EXPECT_FALSE(hasDuplicates(array, -1));
+  EXPECT_FALSE(hasDuplicates(array, -10));
   EXPECT_FALSE(hasDuplicates(array, 0));
   EXPECT_FALSE(hasDuplicates(array, 2));
 }

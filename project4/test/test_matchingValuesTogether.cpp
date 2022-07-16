@@ -17,7 +17,7 @@ TEST(matchingValuesTogether, TestValid) {
 TEST(matchingValuesTogether, TestNegative) {
   string array[] = {"55", "4A", "+35", "-55.", "15.0", "A12A", "15.0"};
 
-  EXPECT_FALSE(matchingValuesTogether(array, -1));
+  EXPECT_FALSE(matchingValuesTogether(array, -10));
   EXPECT_FALSE(matchingValuesTogether(array, 0));
   EXPECT_FALSE(matchingValuesTogether(array, 7));
 }

@@ -25,6 +25,6 @@ TEST(replaceAll, TestValid) {
 TEST(replaceAll, TestNegative) {
   string array[] = {"55", "4A", "+35", "-55.", "15.0", "A12A", "15.0"};
 
-  EXPECT_EQ(-1, replaceAll(array, -1, '.', 'z'));
+  EXPECT_EQ(-1, replaceAll(array, -10, '.', 'z'));
   EXPECT_EQ(-1, replaceAll(array, 0, '.', 'z'));
 }

@@ -17,7 +17,7 @@ TEST(findLastOccurrence, TestValid) {
 TEST(findLastOccurrence, TestNegative) {
   string array[] = {"55", "4A", "+35", "-55.", "15.0", "A12A", "15.0"};
 
-  EXPECT_EQ(-1, findLastOccurrence(array, -1, "15.0"));
+  EXPECT_EQ(-1, findLastOccurrence(array, -10, "15.0"));
   EXPECT_EQ(-1, findLastOccurrence(array, 0, "15.0"));
   EXPECT_EQ(-1, findLastOccurrence(array, 5, "abcdef"));
 }

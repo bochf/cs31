@@ -16,7 +16,7 @@ TEST(hasReverse, TestValid) {
 TEST(hasReverse, TestNegative) {
   string array[] = {"55", "4A", "+35", "-55.", "15.0", "A12A", "15.0"};
 
-  EXPECT_FALSE(hasReverse(array, -1));
+  EXPECT_FALSE(hasReverse(array, -10));
   EXPECT_FALSE(hasReverse(array, 0));
   EXPECT_FALSE(hasReverse(array, 4));
 
