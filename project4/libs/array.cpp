@@ -6,58 +6,6 @@ using namespace std;
 // private functions
 
 /**
- * @brief partitioning the array, random pickup a pivot, move all the
- * elements greater than the pivot to the right side and all the elements
- * less than the pivot to the left side.
- * To avoid string copy, move the index of the string instead
- *
- * @param idx, the array of the index of the original string list
- * @param start, the index of the leftmost element
- * @param end, the index of the right most element
- * @param strList, the original string list
- *
- * @return the position of the pivot
- */
-int partition(int idx[], int start, int end, const string strList[]) {
-  int pivot = idx[start];
-  while (start < end) {
-    // from right to left, search an element less than pivot
-    while (start < end && strList[idx[end]] >= strList[pivot]) {
-      --end;
-    }
-    // either found a string less than pivot or start == end
-    idx[start] = idx[end];
-
-    // from left to right, search an element greater than pivot
-    while (start < end && strList[idx[start]] <= strList[pivot]) {
-      ++start;
-    }
-    // either found a string greater than pivot or start == end
-    idx[end] = idx[start];
-  }
-
-  idx[start] = pivot;
-  return start;
-}
-
-/**
- * @brief sort the strList, to avoid string copy, the result is stored int the
- * index list
- *
- * @param idx, the array of the index of the original string list
- * @param start, the index of the leftmost element
- * @param end, the index of the right most element
- * @param strList, the original string list
- */
-void quickSort(int idx[], int start, int end, const string strList[]) {
-  if (start < end) {
-    int pivot = partition(idx, start, end, strList);
-    quickSort(idx, start, pivot - 1, strList);
-    quickSort(idx, pivot + 1, end, strList);
-  }
-}
-
-/**
  * @brief compare 2 strings are reverse equal
  *
  * @param str1, the first string
@@ -81,9 +29,62 @@ bool reverseEq(const string &str1, const string &str2) {
   return true;
 }
 
+/**
+ * @brief check a string is a valid floating point format
+ * a valid floating point is /(?:\+|-?\d+\.?\d*)/
+ * - optional leading sign + or -
+ * - mandatory integral part composed with digits 0-9
+ * - optional decimal point .
+ * - optional decimal part composed with digits 0-9
+ *
+ * @param str, the input string
+ *
+ * @return true if valid
+ */
+bool isFloat(const string &str) {
+  if (str.empty()) {
+    return false;
+  }
+
+  // devide the string into to integral part and decimal part
+  // each part should contain only digits 0-9
+  int integral = 0;            // start of integral part
+  int decimal = str.find('.'); // position of decimal point
+
+  if (str[0] == '+' || str[0] == '-') {
+    integral = 1;
+  }
+
+  if (decimal ==
+      string::npos) { // decimal point, whole string should be an integer
+    decimal = str.size();
+  }
+
+  // check the integral part
+  for (; integral < decimal; ++integral) {
+    if (str[integral] < '0' || str[integral] > '9') {
+      return false;
+    }
+  }
+
+  // check the decimal part if exists
+  ++decimal;
+  for (; decimal < str.size(); ++decimal) {
+    if (str[decimal] < '0' || str[decimal] > '9') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+////////////////////////////
+// public functions
+
 int locateMaximum(const string array[], int n) {
-  if (n <= 0)
+  if (n <= 0) {
     return -1;
+  }
 
   int max = 0;
   for (int index = 1; index < n; ++index) {
@@ -118,9 +119,6 @@ bool matchingValuesTogether(const string array[], int n) {
 }
 
 bool hasDuplicates(const string array[], int n) {
-  if (n <= 0)
-    return false;
-
   for (int i = 0; i < n; ++i) {
     for (int j = i + 1; j < n; ++j) {
       if (array[i] == array[j]) {
@@ -133,9 +131,6 @@ bool hasDuplicates(const string array[], int n) {
 }
 
 string majorityElement(const string array[], int n) {
-  if (n <= 0)
-    return "";
-
   // find a majority candidate
   int major_idx = 0; // majority candidate index
   int count = 1;     // times the candicate appears
@@ -163,9 +158,6 @@ string majorityElement(const string array[], int n) {
 }
 
 bool hasReverse(const string array[], int n) {
-  if (n <= 0)
-    return false;
-
   for (int i = 0; i < n; ++i) {
     for (int j = i + 1; j < n; ++j) {
       if (reverseEq(array[i], array[j])) {
@@ -178,16 +170,40 @@ bool hasReverse(const string array[], int n) {
 }
 
 int findLastOccurrence(const string array[], int n, string target) {
-  if (n <= 0)
-    return -1;
+  for (int i = n - 1; i >= 0; --i) {
+    if (target == array[i]) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 int countFloatingPointValues(const string array[], int n) {
   if (n <= 0)
     return -1;
+
+  int count = 0;
+  for (int i = 0; i < n; ++i) {
+    count += isFloat(array[i]) ? 1 : 0;
+  }
+
+  return count;
 }
 
 int replaceAll(string array[], int n, char letterToReplace, char letterToFill) {
   if (n <= 0)
     return -1;
+
+  int count = 0;
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < array[i].size(); ++j) {
+      if (array[i][j] == letterToReplace) {
+        array[i][j] = letterToFill;
+        ++count;
+      }
+    }
+  }
+
+  return count;
 }
