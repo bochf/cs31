@@ -101,7 +101,7 @@ bool matchingValuesTogether(const string array[], int n) {
     return false;
 
   int i = 0;
-  while (i < n) {
+  while (i < n - 1) {
     // compare array[i] to rest of the strings in the list
     for (int j = i + 1; j < n; ++j) {
       if (array[i] == array[j]) { // found duplicated string
@@ -119,7 +119,7 @@ bool matchingValuesTogether(const string array[], int n) {
 }
 
 bool hasDuplicates(const string array[], int n) {
-  for (int i = 0; i < n; ++i) {
+  for (int i = 0; i < n - 1; ++i) {
     for (int j = i + 1; j < n; ++j) {
       if (array[i] == array[j]) {
         return true;
@@ -163,7 +163,7 @@ string majorityElement(const string array[], int n) {
 }
 
 bool hasReverse(const string array[], int n) {
-  for (int i = 0; i < n; ++i) {
+  for (int i = 0; i < n - 1; ++i) {
     for (int j = i + 1; j < n; ++j) {
       if (reverseEq(array[i], array[j])) {
         return true;
