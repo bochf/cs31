@@ -18,29 +18,31 @@ Please review the UML diagram shown here.  Each of the following enumerations sh
 | EIGHTPM  | FRIDAY    |
 | TENPM    | SATURDAY  |
 | MIDNIGHT | SUNDAY    |
+
 Based on these enumerations, please review the MovieTicket class diagram shown below:
-|MovieTicket
-|:-
-| -mMovie : string \\ new
-| -mDay : Day
-| -mTime : Time
-| -mKind : Kind
-| -mType : Type
-|
-| +MovieTicket(movie: string, day: Day, time: Time, kind: Kind, type: Type)
-|
-| +getMovie() : string
-| +getDay() : Day
-| +getTime() : Time
-| +getKind() : Kind
-| +getType() : Type
-|
-| +isWeekendTicket() : bool
-| +isWeekdayTicket() : bool
-| +isMatineeTicket() : bool
-| +isEveningTicket() : bool
-|
-| +getCost() : double
+|MovieTicket                                                                |
+|:--------------------------------------------------------------------------|
+| -mMovie : string                                                          |
+| -mDay : Day                                                               |
+| -mTime : Time                                                             |
+| -mKind : Kind                                                             |
+| -mType : Type                                                             |
+|                                                                           |
+| +MovieTicket(movie: string, day: Day, time: Time, kind: Kind, type: Type) |
+|                                                                           |
+| +getMovie() : string                                                      |
+| +getDay() : Day                                                           |
+| +getTime() : Time                                                         |
+| +getKind() : Kind                                                         |
+| +getType() : Type                                                         |
+|                                                                           |
+| +isWeekendTicket() : bool                                                 |
+| +isWeekdayTicket() : bool                                                 |
+| +isMatineeTicket() : bool                                                 |
+| +isEveningTicket() : bool                                                 |
+|                                                                           |
+| +getCost() : double                                                       |
+
 A MovieTicket class holds a string value for the name of the movie, a Day and Time enumerated value for the movie showing, a Type enumerated value for the ticket and a Kind enumerated value for the movie showing.  Each of these five data members has an accessor method (a "getter" method).  In addition, each ticket tracks whether it is a weekend or weekday ticket or whether it is a matinee or evening ticket.  Weekend tickets are for showings held on Friday, Saturday or Sunday.  Weekday tickets are for showings held on Monday, Tuesday, Wednesday or Thursday.  Matinee tickets are for showings that start prior to 5 PM.  Evening tickets are for showings that start after 5 PM.  In addition, every MovieTicket has a method named getCost is called to determine the ticket's cost based on the following table:
 
 **Ticket Costs**
@@ -55,26 +57,27 @@ A MovieTicket class holds a string value for the name of the movie, a Day and Ti
 
 ### BoxOffice class
 Please review the BoxOffice class diagram shown below:
-| BoxOffice
-|-
-| -mAddress, mMovie : string
-|
-| -mTicketCount : int
-| -mMatineeTickets, mEveningTickets : int
-| -mWeekdayTickets, mWeekendTickets : int
-|
-| mEarnedRevenue : double
-|
-| +BoxOffice(address: string, whatsPlaying: string)
-|
-| +buyTicket(movie: string, day:MovieTicket::Day, time: MovieTicket::Time, kind: MovieTicket::Kind, type: MovieTicket::Type) : MovieTicket
-|
-| +getWeekendTickets() : int
-| +getWeekdayTickets() : int
-| +getMatineeTickets() : int
-| +getEveningTickets() : int
-|
-| +getRevenue() : double
+| BoxOffice                                                                                                                                |          
+|------------------------------------------------------------------------------------------------------------------------------------------|
+| -mAddress, mMovie : string                                                                                                               |
+|                                                                                                                                          |
+| -mTicketCount : int                                                                                                                      |
+| -mMatineeTickets, mEveningTickets : int                                                                                                  |
+| -mWeekdayTickets, mWeekendTickets : int                                                                                                  |
+|                                                                                                                                          |
+| mEarnedRevenue : double                                                                                                                  |                        
+|                                                                                                                                          |
+| +BoxOffice(address: string, whatsPlaying: string)                                                                                        |          
+|                                                                                                                                          |
+| +buyTicket(movie: string, day:MovieTicket::Day, time: MovieTicket::Time, kind: MovieTicket::Kind, type: MovieTicket::Type) : MovieTicket |
+|                                                                                                                                          |
+| +getWeekendTickets() : int                                                                                                               |
+| +getWeekdayTickets() : int                                                                                                               |
+| +getMatineeTickets() : int                                                                                                               |
+| +getEveningTickets() : int                                                                                                               |
+|                                                                                                                                          |
+| +getRevenue() : double                                                                                                                   |
+
 A BoxOffice class holds two string values, one for its address and one for the movie it is playing.  Both of these data members have an accessor method.  As tickets are purchased via buyTicket( ... ), the BoxOffice keeps track of how many weekend tickets, how many weekday tickets, how many matinee tickets and how many evening tickets have been sold.  Exactly like a MovieTicket, weekend tickets are for showings held on Friday, Saturday or Sunday.  Weekday tickets are for showings held on Monday, Tuesday, Wednesday or Thursday.  Matinee tickets are for showings that start prior to 5 PM.  Evening tickets are for showings that start after 5 PM.  The BoxOffice also keeps track of the cumulative total cost of every ticket returned by calls to buyTicket( ... ) which is returned by the accessor method getRevenue( ).  Calls to buyTicket( ... ) returns a MovieTicket based on the values of the five passed parameters.  The requested movie string value must match the BoxOffice's mMovie value.  If these two strings do not match, then buyTicket( ... ) should throw a std::logic_error back at the calling code.
 
 For this project, you will create both a .h and .cpp for these two classes.  Write some sample driver code in your main( ) and create assertions to verify that your accessor methods are all working properly.  Some sample code is shown below to further document how this class should work.  You should be guarding your .H files as shown in class to ensure they can be properly included by anyone who uses them.
